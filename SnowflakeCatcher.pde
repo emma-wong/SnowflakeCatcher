@@ -4,7 +4,7 @@ void setup()
 {
   //your code here
   size(500,500);
-  colony = new Snowflake[600];
+  colony = new Snowflake[400];
 
   for(int i = 0; i<colony.length; i++) {
     colony[i] = new Snowflake();
@@ -51,32 +51,28 @@ class Snowflake
   {
     //class member variable initializations
     myX = (int)(Math.random()*500);
-    myY = (int)(Math.random()*500);
+    myY = (int)(Math.random()*500)-500;
     isMoving = true;
   }
   void show()
   {
     //your code here
     noStroke();
-    fill(255, 255, 255);
+    //PImage img = loadImage("sno.png");
+    //image(img, myX, myY, 15, 15);
+    fill(255, 255, 255, 225);
     ellipse(myX, myY, 6, 6);
   }
   void lookDown()
   {
     //your code here
-    if ((myY > 500) || (myY < 0)) {
+    if ((get(myX, myY + 4) == color(255,0,0)) || (get(myX, myY + 4) == color(255,255,255))) {
       isMoving = false;
-    }
-    if (get(myX, myY + 4) == color(255,0,0)) {
-      isMoving = false;
-    }
-    else if (get(myX, myY + 4) == color(255,255,255)) {
-      isMoving = false;
-    }    
+    }   
     else {
       isMoving = true;
     }
-    }
+  }
   void erase()
   {
     fill(0,0,0);
@@ -93,7 +89,7 @@ class Snowflake
   {
     //your code here
     if (myY > 500) {
-      myY = 0;
+      myY = (int)(Math.random()*500)-500;
       myX = (int)(Math.random()*500);
     }
   }
